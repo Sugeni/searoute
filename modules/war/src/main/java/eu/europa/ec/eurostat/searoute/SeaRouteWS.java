@@ -12,12 +12,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+//import javax.servlet.annotation.WebServlet;
 
 import org.geotools.geojson.geom.GeometryJSON;
 import org.geotools.graph.structure.Node;
 import org.locationtech.jts.geom.Coordinate;
 
 import eu.europa.ec.eurostat.jgiscotools.feature.Feature;
+
 
 public class SeaRouteWS extends HttpServlet {
 	//   /usr/share/tomcat8/bin/catalina.sh start
@@ -257,13 +259,14 @@ public class SeaRouteWS extends HttpServlet {
 			Feature f = sr.getRoute(oPos, oN, dPos, dN,
 					allowSuez, allowPanama, allowMalacca, allowGibraltar, allowDover, allowBering,
 					allowMagellan, allowBabelmandeb, allowKiel, allowCorinth, allowNorthwest, allowNortheast);
-
+			
+			
 			if(f.getGeometry() == null){
 				out.print( "{\"status\":\"error\",\"message\":\"Shortest path not found\"}" );
 				//setInCache(oLocid, dLocid, st);
 				return;
 			}
-
+			
 			String st;
 			st = "{\"status\":\"ok\"";
 			if(distP){
